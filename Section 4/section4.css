@@ -1,0 +1,106 @@
+body {
+  background: #e9ecf3;
+  padding: 1rem;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 12px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-auto-rows: minmax(17rem, auto);
+  padding: 1rem;
+  width:75%;
+  grid-gap: 1rem;
+  margin:auto;
+}
+
+.item {
+  overflow: hidden;
+}
+
+.item2 {
+  grid-row: 1/3;
+  grid-column: 2/3;
+  min-height: 32rem;
+  /* border: 2px solid #111; */
+
+}
+
+.item2-image {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  overflow: hidden;
+  position: relative;
+  transform: scale(1.2, 1.3);
+}
+
+.image--big {
+  background-image: url('./pizza.png');
+}
+
+.item2-image::before {
+  content: "";
+  display: block;
+  padding-top: 80%;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  padding: 0.5rem 0rem;
+  line-height: 1.5;
+  overflow: hidden;
+}
+
+.card-content {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.card-image {
+  font-size: 1.3rem;
+  color: lightcoral;
+  background: gold;
+  width: 20%;
+  margin:auto;
+  border-radius: 50%;
+  padding: 0.4rem;
+}
+
+.card-title {
+  font-weight: 700;
+  font-size: 25px;
+}
+
+.card-text {
+  color: rgb(70, 28, 28);
+  font-size: 1rem;
+  padding-top: 1rem;
+}
+
+@media(max-width: 55rem) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+  .item2 {
+    grid-row: 1/2;
+    grid-column: 1/2;
+  }
+  .card {
+    padding: 1rem 2rem; 
+  }
+}
+
+@media(max-width: 40rem) {
+  .item2 {
+    min-height: 20rem;
+  }
+}
