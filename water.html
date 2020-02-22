@@ -2,90 +2,147 @@
 
 <head>
     <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+    <style>
+        input {
+            width: 350px;
+            height: 30px;
+            outline: none;
+            padding: 0px 10px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+          button {
+            width: 200px;
+            height: 30px;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            border-color: white;
+            outline: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
-    <div >
+    <div>
+        <input id="task" type="text" onkeyup="keyups()" placeholder="Example: 10,6,12,30,......">
+        <button onclick="abc()" id="l1">check level</button>
+    </div>
+    <div>
         <b>Output:</b><span id='mydd'></span>
         <div id="myDiv"></div>
         <div id="myDiv1"></div>
     </div>
 </body>
-<script type="text/javascript">
+<script>
 
-   var data1=document.getElementById("mydd")
-   
-    function findWater(arr, n) {
-        let left = new Array(n).fill(0);
-        let right = new Array(n).fill(0);
-        let water = 0;
-        let result = [];
-        left[0] = arr[0];
-        var i;
-        for (i = 1; i < n; i++) {
-            left[i] = Math.max(...[left[i - 1], arr[i]])
+
+    var data1 = document.getElementById("mydd")
+    var button = document.getElementById("l1")
+    var task = document.getElementById("task").value;
+    button.disabled = true;
+
+    button.style.backgroundColor = "rgb(255, 71, 90)"
+
+    function keyups() {
+        var task = document.getElementById("task").value;
+
+        if (task != "") {
+            button.disabled = false;
+            button.style.backgroundColor = "lightgreen"
+        }else{
+            button.disabled = true;
+            button.style.backgroundColor = "rgb(255, 71, 90)";
         }
-        right[n - 1] = arr[n - 1]
-        for (i = n - 2; i > -1; i--) {
-            right[i] = Math.max(...[right[i + 1], arr[i]])
-        }
-        for (i = 0; i < n; i++) {
-            water += Math.min(...[left[i], right[i]]) - arr[i]
-            result.push(Math.min(...[left[i], right[i]]) - arr[i]);
-        }
-        // console.log(result);
-        return [water, result];
     }
-    let arr = [0,4,0,0,0,6,0,6,4,0] ;
-    let n = arr.length;
-    let answer = [...findWater(arr, n)];
-    // console.log(answer);
-    console.log(`Maximum water that can be accumulated is ${answer[0]}`);
-    hh=answer[0]
-    data1.innerHTML=(hh)
 
-    var trace1 = {
-        x: Array.from(Array(n).keys()),
-        y: answer[1],
-        type: 'bar',
-        name: 'water',
-        // text: ['4.17 below the mean', '4.17 below the mean', '0.17 below the mean', '0.17 below the mean', '0.83 above the mean', '7.83 above the mean'],
-        marker: {
-            color: "rgb(108, 101, 240);"
+    function abc() {
+        let arr = []
+        var task = document.getElementById("task").value;
+        var task = task.trim();
+        var lastChar = task.slice(-1);
+        if (lastChar == ',') {
+            task = task.slice(0, -1);
         }
-    };
+        var task = task.split(',')
+        for (i = 0; i <= task.length - 1; i++) {
+            arr[i] = task[i]
+        }
+        
 
-    var trace2 = {
-        x: Array.from(Array(n).keys()),
-        y: arr,
-        name: 'container',
-        type: 'bar',
-        marker: {
-            color: 'rgb(227, 252, 63)'
+        let n = arr.length;
+        function findWater(arr, n) {
+            let left = new Array(n).fill(0);
+            let right = new Array(n).fill(0);
+            let water = 0;
+            let result = [];
+            left[0] = arr[0];
+            var i;
+            for (i = 1; i < n; i++) {
+                left[i] = Math.max(...[left[i - 1], arr[i]])
+            }
+            right[n - 1] = arr[n - 1]
+            for (i = n - 2; i > -1; i--) {
+                right[i] = Math.max(...[right[i + 1], arr[i]])
+            }
+            for (i = 0; i < n; i++) {
+                water += Math.min(...[left[i], right[i]]) - arr[i]
+                result.push(Math.min(...[left[i], right[i]]) - arr[i]);
+            }
+            // console.log(result);
+            return [water, result];
         }
-    };
-    
-    var trace3 = {
-        x: Array.from(Array(n).keys()),
-        y: arr,
-        name: 'container',
-        type: 'bar',
-        marker: {
-            color: 'rgb(252, 252, 252)'
-        }
-    };
+        let answer = [...findWater(arr, n)];
+        // console.log(answer);
+        console.log(`Maximum water that can be accumulated is ${answer[0]}`);
+        hh = answer[0]
+        data1.innerHTML = (hh)
 
-    var data = [trace2, trace1];
-    var drop=[trace3,trace1]
-    var layout = {
-        title: 'water tanker',
-        bargap: 0.01,
-        barmode: 'stack'
-    };
-    Plotly.newPlot('myDiv', data, layout);
-    Plotly.newPlot('myDiv1', drop, layout);
-  
-  
+        var trace1 = {
+            x: Array.from(Array(n).keys()),
+            y: answer[1],
+            type: 'bar',
+            name: 'water',
+            // text: ['4.17 below the mean', '4.17 below the mean', '0.17 below the mean', '0.17 below the mean', '0.83 above the mean', '7.83 above the mean'],
+            marker: {
+                color: "rgb(108, 101, 240);"
+            }
+        };
+
+        var trace2 = {
+            x: Array.from(Array(n).keys()),
+            y: arr,
+            name: 'container',
+            type: 'bar',
+            marker: {
+                color: 'rgb(227, 252, 63)'
+            }
+        };
+
+        var trace3 = {
+            x: Array.from(Array(n).keys()),
+            y: arr,
+            name: 'container',
+            type: 'bar',
+            marker: {
+                color: 'rgb(252, 252, 252)'
+            }
+        };
+
+        var data = [trace2, trace1];
+        var drop = [trace3, trace1]
+        var layout = {
+            title: 'water tanker',
+            bargap: 0.01,
+            barmode: 'stack'
+        };
+        Plotly.newPlot('myDiv', data, layout);
+        Plotly.newPlot('myDiv1', drop, layout);
+
+    }
+
 </script>
 
 </html>

@@ -7,7 +7,6 @@ def add_solution(solutions, a,b, flag):
     for soln in solutions.get(a - Time[b], []):
         temp = soln.copy() 
         temp[b] = temp[b] + 1
-        print("hello"+temp)
         solutions.get(a, []).append(temp)
     
     if solutions.get(a - Time[b]) is None:
@@ -26,11 +25,9 @@ def find_max_earning(time_units, n, earnings, Time):
 		    for j in range(n): 
 			      if (Time[j] < i):
 			          flag = dp[i] < dp[i - Time[j]] + earnings[j]*(i-Time[j])
-			          print(flag)
-			          print(i)
 			          if dp[i] <= dp[i - Time[j]] + earnings[j]*(i-Time[j]):
 			              dp[i] = dp[i - Time[j]] + earnings[j]*(i-Time[j])
-			              print(dp)
+			              
 			              solutions = add_solution(solutions, i, j, flag)
 			              
     
