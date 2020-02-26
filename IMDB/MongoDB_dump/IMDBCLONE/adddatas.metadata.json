@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"IMDBCLONE.adddatas"}],"uuid":"0883bcb05f124610a11f8cc3e01ed40f"}
