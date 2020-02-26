@@ -1,0 +1,96 @@
+<b style="margin: 30px;">note:<i>click movie name to get movie detalis</i></b>
+<button class="hh"(click)="refresh()">refresh</button>
+
+<table class="table">
+
+    <tr class="thead">
+        <th>actor name</th>
+        <th>DOB</th>
+        <th>gender</th>
+        <th>bio</th>
+        <th>Moviename</th>
+        <th>Remove</th>
+        <th>Update</th>
+
+    </tr>
+
+
+    <tr *ngFor="let k of array ">
+        <td>{{k.actorname }}</td>
+        <td>{{k.adob }}</td>
+        <td>{{k.agender}}</td>
+        <td>{{k.abio}}</td>
+        <td data-toggle="modal" data-target="#myModal1" (click)="update(k)" style="cursor: pointer;color:blue">
+            {{k.moviename}}</td>
+        <td (click)="delete(k._id)" style="cursor: pointer;color:rgb(197, 4, 4)">Delete</td>
+        <td data-toggle="modal" data-target="#myModal2" (click)="edit(k)" style="cursor: pointer;color:rgb(49, 211, 0)" >Update</td>
+    </tr>
+</table>
+
+<div class=" modal" id="myModal1" *ngIf="cp">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Movie details</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <b>moviename:
+                            <h3>{{cp.moviename}}</h3>
+                        </b>
+
+                        <b>year of realse:
+                            <p>{{cp.yor}}</p>
+                        </b>
+                        <b>plot:
+                            <p>{{cp.plot}}</p>
+                        </b>
+                        <b>producer:
+                            <p>{{cp.producername}}</p>
+                        </b>
+
+
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+            </div>
+            <div class=" modal" id="myModal2" *ngIf="cp">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+    
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Actor details</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+    
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <b>firstname:<input type="text" class="form-control" [(ngModel)]="upd.actorname"></b>
+                            </div>
+                            <div class="form-group">
+                                <b>DOB:<input type="text" class="form-control" [(ngModel)]="upd.adob"></b>
+                            </div>
+                            <div class="form-group">
+                                <b>gender:<input type="text" class="form-control"  [(ngModel)]="upd.agender"></b>
+                            </div>
+                            <div class="form-group">
+                                <b>bio:<input type="text" class="form-control"  [(ngModel)]="upd.abio"></b><br>
+                            </div>
+                             <button data-dismiss="modal" class="btn btn-warning" (click)="finalupdate()">update</button>
+                        </div>
+    
+                    </div>
+                </div>
+                </div>

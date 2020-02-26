@@ -1,0 +1,24 @@
+td{
+    font-family:sans-serif;
+    }
+    .table{
+       border: 2px solid rgb(219, 134, 134);
+       width:90%;
+       margin: auto;
+       margin-top: 30px;
+    }
+    td{
+       text-align: center;
+    }
+    .thead{
+       color: rgb(68, 77, 59);
+       text-align: center;
+    }
+    .hh{
+       border-radius: 30px;
+       outline: none;
+       background-color: rgb(78, 153, 250);
+       margin:10px;
+       float: right;
+    }
+    

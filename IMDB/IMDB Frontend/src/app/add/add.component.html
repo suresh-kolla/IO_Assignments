@@ -1,0 +1,107 @@
+<div [formGroup]="movieform">
+
+    <div id="add">
+        <h2>IMDB clone</h2>
+        <h4>Add Movie details</h4>
+    </div>
+
+    <div class="form-group ">
+        <b>Movie name <sup>*</sup></b>
+        <input type="email" class="form-control" placeholder="Enter Movie name" id="email" formControlName="moviename">
+        <div class="hh" >
+            <span  *ngIf="movieform.controls['moviename'].errors && movieform.controls['moviename'].touched">* Movie name is mandatory </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <b>Year of release <sup>*</sup></b>
+        <input type="year" class="form-control" placeholder="Enter YOR" id="pwd" formControlName="yor">
+        <div class="hh" >
+            <span  *ngIf="movieform.controls['yor'].errors && movieform.controls['yor'].touched">* Year of release is mandatory </span>
+        </div>
+    </div>
+    <div class="form-group ">
+        <b>Plot</b>
+        <input type="text" class="form-control" placeholder="Enter Plot" formControlName="plot">
+    </div>
+
+    <div id="add">
+        <h4>Add Actor details</h4>
+    </div>
+
+    <div class="form-group ">
+        <b>Actor name <sup>*</sup></b>
+        <input type="email" class="form-control" placeholder="Enter Actor name" formControlName="actorname">
+        <div class="hh" >
+            <span  *ngIf="movieform.controls['actorname'].errors && movieform.controls['actorname'].touched">* Actor name is mandatory </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <b>Date Of Birth <sup>*</sup></b>
+        <input type="date" class="form-control" placeholder="Enter DOB" formControlName="adob">
+        <div class="hh" >
+            <span  *ngIf="movieform.controls['adob'].errors && movieform.controls['adob'].touched">* Actor date of birth is mandatory </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <b>gender <sup>*</sup></b>
+        <div class="form-group">
+            <label class="form-check-label" for="radio1">
+                <input type="radio" class="form-check-input" id="radio1" value="Male" checked
+                    formControlName="agender">male
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="form-check-label" for="radio2">
+                <input type="radio" class="form-check-input" id="radio2" value="Female" formControlName="agender">female
+            </label>
+        </div>
+
+    </div>
+
+    <div class="form-group ">
+        <b>Bio</b>
+        <input type="text" class="form-control" placeholder="Enter Bio" formControlName="abio">
+    </div>
+    <div id="add">
+        <h4>Add Producer details</h4>
+    </div>
+
+    <div class="form-group ">
+        <b>Producer name <sup>*</sup></b>
+        <input type="email" class="form-control" placeholder="Enter Producer name" formControlName="producername">
+        <div class="hh" >
+            <span  *ngIf="movieform.controls['producername'].errors && movieform.controls['producername'].touched">* producer name is mandatory </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <b>Date Of Birth <sup>*</sup></b>
+        <input type="date" class="form-control" placeholder="Enter DOB" formControlName="pdob">
+        <div class="hh" >
+            <span  *ngIf="movieform.controls['pdob'].errors && movieform.controls['pdob'].touched">* Producer date of birth is mandatory </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <b>gender <sup>*</sup></b>
+        <div class="form-group">
+            <label class="form-check-label" for="radio1">
+                <input type="radio" class="form-check-input" id="radio1" value="Male" checked
+                    formControlName="pgender">male
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="form-check-label" for="radio2">
+                <input type="radio" class="form-check-input" id="radio2" value="Female" formControlName="pgender">female
+            </label>
+        </div>
+
+    </div>
+
+    <div class="form-group ">
+        <b>Bio</b>
+        <input type="text" class="form-control" placeholder="Enter Bio" formControlName="pbio">
+    </div>
+
+
+    <button type="submit" class="btn btn-warning" (click)="done()" [disabled]="!movieform.valid">submit</button>
+    
+</div>
